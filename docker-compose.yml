@@ -1,0 +1,14 @@
+services:
+  gitm:
+    build: .
+    image: gitm:latest
+    container_name: gitm
+    restart: unless-stopped
+    ports:
+      - "10110:10110"
+    environment:
+      - GITM_PORT=10110
+      - GITM_TOKEN=${GITM_TOKEN:?必须设置访问令牌}
+      - GITM_LOG_LEVEL=info
+      - GITM_UPSTREAM_TIMEOUT=60000
+    # 独立容器，不与 new-api 等现有服务共享任何卷/网络，互不影响

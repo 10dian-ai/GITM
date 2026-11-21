@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GITM · 预设还原</title>
+<link rel="stylesheet" href="./style.css" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧦</text></svg>" />
+</head>
+<body>
+<div id="gate" class="gate">
+  <div class="gate-card">
+    <div class="ears"><span></span><span></span></div>
+    <h1>GITM <small>Give It To Me</small></h1>
+    <p class="sub">中间件预设还原 · 自测台</p>
+    <input id="token" type="password" placeholder="访问令牌 GITM_TOKEN" autocomplete="off" />
+    <button id="enter">进入 ♡</button>
+    <p id="gate-msg" class="msg"></p>
+  </div>
+</div>
+
+<header class="top">
+  <div class="brand"><span class="ears sm"><span></span><span></span></span> GITM</div>
+  <div class="ribbon"></div>
+  <div class="hint">白丝系 · v2</div>
+</header>
+
+<main class="wrap">
+  <section class="card">
+    <div class="card-h"><span class="dot">1</span> API 接入</div>
+    <label>地址 Base URL</label>
+    <input id="base" placeholder="https://your-gateway.com（/v1、/chat/completions 自动去掉）" />
+    <label>密钥 API Key</label>
+    <input id="key" type="password" placeholder="sk-… / AIza… / anthropic key" />
+    <div class="row">
+      <button id="detect" class="primary">自动识别 & 拉模型</button>
+      <span id="fmt-badges" class="badges"></span>
+    </div>
+    <div class="row">
+      <label class="inline">格式</label><select id="provider"></select>
+      <label class="inline">模型</label><select id="model" class="grow"></select>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card-h"><span class="dot">2</span> 测试 & 提取</div>
+    <div class="row modes">
+      <label class="chip"><input type="radio" name="mode" value="quick"><span>快速</span></label>
+      <label class="chip"><input type="radio" name="mode" value="standard" checked><span>标准</span></label>
+      <label class="chip"><input type="radio" name="mode" value="deep"><span>深度</span></label>
+    </div>
+    <div class="row">
+      <button id="probe">① 预探测</button>
+      <button id="extract" class="primary">② 开始提取 ♡</button>
+    </div>
+    <div id="probe-out" class="probe-out"></div>
+    <div id="progress" class="progress hidden"><div class="bar"><i></i></div><span></span></div>
+    <pre id="stream" class="stream hidden"></pre>
+  </section>
+
+  <section class="card" id="result-card" style="display:none">
+    <div class="card-h"><span class="dot">3</span> 还原结果 <span id="overall-conf" class="conf"></span></div>
+    <div id="entries" class="entries"></div>
+    <div class="row export">
+      <button id="exp-st" class="primary">导出酒馆预设 JSON</button>
+      <button id="exp-txt">TXT</button>
+      <button id="exp-md">Markdown</button>
+    </div>
+    <p class="note">低置信度（淡色）建议人工核对；标“动态”的多半是宏/随机/时间。采样参数无法从调用侧确认，导出填默认并标 unverified。</p>
+  </section>
+
+  <section class="card" id="eval-card" style="display:none">
+    <div class="card-h"><span class="dot">4</span> 对照评分 <span class="tag">自己的中间件专用</span></div>
+    <label>粘贴你的<strong>原始预设</strong>（酒馆 JSON 或纯文本）→ 逐条算还原率</label>
+    <textarea id="truth" placeholder='例如导出的 SillyTavern 预设 JSON，或原始 system 文本'></textarea>
+    <div class="row"><button id="do-eval" class="primary">计算还原率</button><span id="eval-sum" class="conf"></span></div>
+    <div id="eval-out" class="eval-out"></div>
+  </section>
+</main>
+
+<footer>GITM · 面向你自己的中间件做预设泄漏自测 ♡</footer>
+<script src="./app.js"></script>
+</body>
+</html>

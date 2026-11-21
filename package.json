@@ -1,0 +1,14 @@
+{
+  "name": "gitm",
+  "version": "2.0.0",
+  "description": "Give It To Me — 中间件预设还原/泄漏自测工具（面向自己的注入中间件）",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test test/*.test.js",
+    "check": "node --check src/server.js"
+  },
+  "engines": { "node": ">=18" },
+  "dependencies": { "express": "^4.19.2" }
+}
